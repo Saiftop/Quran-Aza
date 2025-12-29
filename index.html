@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صدقة جارية | الحجة عزة عبد المجيد عمر</title>
+    <title>صدقة جارية | أمي الحجة عزة عبد المجيد عمر</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,9 +14,9 @@
             --text-color: #e6f1ff;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; -webkit-user-select: none; user-select: none; }
         
-        body { background: var(--dark-bg); color: var(--text-color); min-height: 100vh; }
+        body { background: var(--dark-bg); color: var(--text-color); min-height: 100vh; overflow-x: hidden; }
 
         .dedication-banner {
             background-color: var(--primary-color);
@@ -45,16 +45,23 @@
         .quran-container { width: 100%; height: 80vh; border: 2px solid var(--gold-color); border-radius: 10px; overflow: hidden; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        .duaa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .duaa-card {
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
+        
+        .card-item {
             background: var(--card-bg); padding: 20px; border-radius: 8px;
             border-right: 4px solid var(--gold-color); line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .count-badge {
+            background: var(--gold-color); color: #000; padding: 2px 8px;
+            border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; display: inline-block;
         }
 
         .azkar-sub-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
         .sub-tab-btn {
             background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color);
-            padding: 5px 15px; border-radius: 4px; cursor: pointer;
+            padding: 8px 20px; border-radius: 4px; cursor: pointer;
         }
         .sub-tab-btn.active { background: var(--gold-color); color: var(--dark-bg); }
 
@@ -64,10 +71,10 @@
             border-radius: 15px; border: 2px solid var(--gold-color);
         }
         .counter { font-size: 4rem; color: var(--gold-color); margin: 15px 0; }
-        .sebha-btn { background: var(--gold-color); border: none; padding: 15px 30px; border-radius: 5px; font-weight: bold; cursor: pointer; color: #000; }
+        .sebha-btn { background: var(--gold-color); border: none; padding: 15px 30px; border-radius: 5px; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: var(--card-bg); border-radius: 10px; padding: 20px; border: 1px solid rgba(197, 160, 89, 0.3); text-align: center; }
+        .radio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .radio-card { background: var(--card-bg); border-radius: 10px; padding: 20px; border: 1px solid rgba(197, 160, 89, 0.3); text-align: center; }
         .play-btn { background: var(--gold-color); color: #000; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
 
         footer { text-align: center; padding: 40px 20px; background: #02060d; margin-top: 40px; border-top: 1px solid var(--gold-color); }
@@ -75,16 +82,14 @@
         .player-bar {
             position: fixed; bottom: 0; width: 100%; background: var(--card-bg);
             padding: 15px; display: none; justify-content: center; align-items: center;
-            gap: 15px; border-top: 2px solid var(--gold-color); z-index: 999;
+            gap: 15px; border-top: 2px solid var(--gold-color); z-index: 1000;
         }
     </style>
     
     <script>
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-                return false;
-            }
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
         };
     </script>
 </head>
@@ -92,8 +97,8 @@
 
     <section class="dedication-banner">
         <div class="container">
-            <p>صدقة جارية على روح</p>
-            <h1>الحجة عزة عبد المجيد عمر</h1>
+            <p style="letter-spacing: 2px; opacity: 0.8;">صدقة جارية على روح</p>
+            <h1>أمي الحجة عزة عبد المجيد عمر</h1>
             <p>"اللهم اجعلها في بطن القبر مطمئنة وعند قيام الأشهاد آمنة"</p>
         </div>
     </section>
@@ -103,15 +108,15 @@
             <button class="tab-btn active" onclick="switchTab(event, 'radioSection')">الإذاعة</button>
             <button class="tab-btn" onclick="switchTab(event, 'quranSection')">المصحف المكتوب</button>
             <button class="tab-btn" onclick="switchTab(event, 'azkarSection')">أذكار الصباح والمساء</button>
-            <button class="tab-btn" onclick="switchTab(event, 'duaaSection')">أدعية للمتوفاة</button>
+            <button class="tab-btn" onclick="switchTab(event, 'duaaSection')">أدعية لأمي </button>
             <button class="tab-btn" onclick="switchTab(event, 'sebhaSection')">السبحة</button>
         </div>
 
         <div id="radioSection" class="content-section active">
-            <div class="grid">
-                <div class="card"><h3>إذاعة القاهرة</h3><button class="play-btn" onclick="playRadio('https://n02.radiojar.com/8s5u5tpdtwzuv', 'إذاعة القاهرة')">تشغيل</button></div>
-                <div class="card"><h3>الشيخ الحصري</h3><button class="play-btn" onclick="playRadio('https://backup.qurango.net/radio/mahmoud_khalil_alhussary_warsh', 'الشيخ الحصري')">تشغيل</button></div>
-                <div class="card"><h3>الشيخ عبدالباسط</h3><button class="play-btn" onclick="playRadio('https://qurango.net/radio/abdulbasit_abdulsamad.mp3', 'الشيخ عبدالباسط')">تشغيل</button></div>
+            <div class="radio-grid">
+                <div class="radio-card"><h3>إذاعة القرآن الكريم من القاهرة</h3><button class="play-btn" onclick="playRadio('https://n02.radiojar.com/8s5u5tpdtwzuv', 'إذاعة القرآن من القاهرة')">تشغيل</button></div>
+                <div class="radio-card"><h3>الشيخ الحصري</h3><button class="play-btn" onclick="playRadio('https://backup.qurango.net/radio/mahmoud_khalil_alhussary_warsh', 'الشيخ الحصري - ورش')">تشغيل</button></div>
+                <div class="radio-card"><h3>الشيخ عبدالباسط</h3><button class="play-btn" onclick="playRadio('https://qurango.net/radio/abdulbasit_abdulsamad.mp3', 'الشيخ عبدالباسط عبدالصمد')">تشغيل</button></div>
             </div>
         </div>
 
@@ -124,43 +129,112 @@
                 <button class="sub-tab-btn active" onclick="switchAzkar(event, 'morningAzkar')">أذكار الصباح</button>
                 <button class="sub-tab-btn" onclick="switchAzkar(event, 'eveningAzkar')">أذكار المساء</button>
             </div>
-            <div id="morningAzkar" class="azkar-content active duaa-grid">
-                <div class="duaa-card"><b>آية الكرسي:</b> أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ: "اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ..."</div>
-                <div class="duaa-card"><b>المعوذات:</b> سورة الإخلاص، والفلق، والناس (3 مرات).</div>
-                <div class="duaa-card">أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</div>
-                <div class="duaa-card">حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم (7 مرات).</div>
+            
+            <div id="morningAzkar" class="azkar-content active grid-layout">
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br><b>آية الكرسي:</b> "اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ..."</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br><b>سورة الإخلاص:</b> "قُلْ هُوَ اللَّهُ أَحَدٌ..."</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br><b>سورة الفلق:</b> "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ..."</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br><b>سورة الناس:</b> "قُلْ أَعُوذُ بِرَبِّ النَّاسِ..."</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي.</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div>
+                <div class="card-item"><span class="count-badge">7 مرات</span><br>حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم.</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br>بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.</div>
+                <div class="card-item"><span class="count-badge">100 مرة</span><br>سبحان الله وبحمده.</div>
+                <div class="card-item"><span class="count-badge">10 مرات</span><br>اللهم صل وسلم على نبينا محمد.</div>
             </div>
-            <div id="eveningAzkar" class="azkar-content duaa-grid" style="display:none;">
-                <div class="duaa-card">أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</div>
-                <div class="duaa-card">أعوذ بكلمات الله التامات من شر ما خلق (3 مرات).</div>
+
+            <div id="eveningAzkar" class="azkar-content grid-layout" style="display:none;">
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br><b>آية الكرسي:</b> "اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ..."</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br>الإخلاص، الفلق، الناس.</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</div>
+                <div class="card-item"><span class="count-badge">مرة واحدة</span><br>اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br>أعوذ بكلمات الله التامات من شر ما خلق.</div>
+                <div class="card-item"><span class="count-badge">3 مرات</span><br>رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً.</div>
+                <div class="card-item"><span class="count-badge">100 مرة</span><br>أستغفر الله وأتوب إليه.</div>
             </div>
         </div>
 
         <div id="duaaSection" class="content-section">
-            <div class="duaa-grid">
-                <div class="duaa-card">اللهم ارحم الحجة "عزة عبد المجيد عمر" واغفر لها.</div>
-                <div class="duaa-card">اللهم اجعل قبرها روضة من رياض الجنة.</div>
-                <div class="duaa-card">اللهم ثبتها عند السؤال.</div>
+            <div class="grid-layout">
+                <script>
+                    const prayers = [
+                        "اللهم ارحم أمي عزة واغفر لها وعافها واعف عنها.",
+                        "اللهم أكرم نزلها ووسع مدخلها واغسلها بالماء والثلج والبرد.",
+                        "اللهم نقها من الخطايا كما ينقى الثوب الأبيض من الدنس.",
+                        "اللهم أبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها.",
+                        "اللهم أدخلها الجنة وأعذها من عذاب القبر ومن عذاب النار.",
+                        "اللهم اجعل قبرها روضة من رياض الجنة ولا تجعله حفرة من حفر النار.",
+                        "اللهم آنس وحدتها، وآنس وحشتها، وآنس غربتها.",
+                        "اللهم انزلها منزلاً مباركاً، وأنت خير المنزلين.",
+                        "اللهم انزلها منازل الصديقين والشهداء والصالحين.",
+                        "اللهم اجعل قبرها نوراً وضياءً وفسحة وسروراً.",
+                        "اللهم املأ قبرها بالرضا والنور، والفسحة والسرور.",
+                        "اللهم إنها في ذمتك وحبل جوارك، فقه فتنة القبر وعذاب النار.",
+                        "اللهم إنها كانت تشهد أنك لا إله إلا أنت وأن محمداً عبدك ورسولك وأنت أعلم بها.",
+                        "اللهم ثبتها عند السؤال، اللهم ثبتها عند السؤال.",
+                        "اللهم إن كانت محسنة فزد في حسناتها، وإن كانت مسيئة فتجاوز عنها.",
+                        "اللهم ارزقها بكل حرف في القرآن حلاوة، وبكل كلمة كرامة.",
+                        "اللهم ارحمها تحت الأرض، واستره يوم العرض، ولا تخزها يوم يبعثون.",
+                        "اللهم يمن كتابها، ويسر حسابها، وثقل بالحسنات ميزانها.",
+                        "اللهم اسكنها في أعلى الجنات، بجوار نبيك ومصطفاك.",
+                        "اللهم ارزقها شربة هنيئة من حوض نبيك لا تظمأ بعدها أبداً.",
+                        "اللهم ابني لها بيتاً في الجنة واجعل ملتقانا هناك.",
+                        "اللهم اجعل عن يمينها نوراً، وعن شمالها نوراً، ومن أمامها نوراً.",
+                        "اللهم انظر إليها نظرة رضا، فإن من تنظر إليه نظرة رضا لا تعذبه أبداً.",
+                        "اللهم اغفر لحينا وميتنا، وشاهدنا وغائبنا، وصغيرنا وكبيرنا.",
+                        "اللهم من أحييته منا فأحيه على الإسلام، ومن توفيته منا فتوفه على الإيمان.",
+                        "اللهم ارحم أمي رحمة واسعة وتغمدها برحمتك.",
+                        "اللهم إنها أمتك وبنت أمتك، احتاجت إلى رحمتك وأنت غني عن عذابها.",
+                        "اللهم إن كانت من المحسنين فزد في إحسانها.",
+                        "اللهم إن كانت من المسيئين فتجاوز عن سيئاتها.",
+                        "اللهم اكتبها عندك من الصالحين والصديقين والشهداء.",
+                        "اللهم افتح لها أبواب جنتك وأبواب رحمتك.",
+                        "اللهم اغفر لها في المهديين، واخلفها في عقبه في الغابرين.",
+                        "اللهم اجعل عملها هذا صدقة جارية ترفع درجتها.",
+                        "اللهم لا تحرمنا أجرها ولا تفتنا بعدها.",
+                        "اللهم إن رحمتك وسعت كل شيء فارحمها رحمة تطمئن بها نفسها.",
+                        "اللهم احشرها مع المتقين إلى الرحمن وفداً.",
+                        "اللهم احشرها مع أصحاب اليمين، واجعل تحيتها سلام لك من أصحاب اليمين.",
+                        "اللهم بشرها بقولك كلوا واشربوا هنيئاً بما أسلفتم في الأيام الخالية.",
+                        "اللهم اجعلها من الذين سعدوا في الجنة خالدين فيها ما دامت السماوات والأرض.",
+                        "اللهم لا نزكيها عليك، ولكننا نحسبها أنها آمنت وعملت صالحاً.",
+                        "اللهم ارزقها الثبات عند السؤال وفي القبر.",
+                        "اللهم إنها كانت مصلية لك، فثبتها على الصراط يوم تزل الأقدام.",
+                        "اللهم إنها كانت صائمة لك، فأدخلها الجنة من باب الريان.",
+                        "اللهم إنها كانت لكتابك تالية، فشفع فيها القرآن.",
+                        "اللهم ارزقها الفردوس الأعلى من الجنة.",
+                        "اللهم ارحم أمي واغفر لها وارحم والدينا وجميع المسلمين.",
+                        "اللهم بيض وجهها يوم تبيض وجوه وتسود وجوه.",
+                        "اللهم ارزقها لذة النظر إلى وجهك الكريم.",
+                        "اللهم اسقها من يد نبيك شربة لا تظمأ بعدها.",
+                        "اللهم استجب دعاءنا واغفر لفقيدتنا."
+                    ];
+                    prayers.forEach(p => {
+                        document.write(`<div class="card-item">${p}</div>`);
+                    });
+                </script>
             </div>
         </div>
 
         <div id="sebhaSection" class="content-section">
             <div class="sebha-box">
                 <div class="counter" id="sebhaCount">0</div>
-                <button class="sebha-btn" onclick="countSebha()">سبّح</button>
+                <button class="sebha-btn" onclick="countSebha()">سبّح الآن</button>
                 <p style="margin-top:15px; cursor:pointer; color:gray;" onclick="resetSebha()">تصفير</p>
             </div>
         </div>
     </div>
 
     <div class="player-bar" id="playerBar">
-        <span id="statName"></span>
-        <button class="play-btn" style="width:auto; margin:0 10px;" onclick="stopRadio()">إيقاف</button>
+        <span id="statName" style="font-weight: bold;"></span>
+        <button class="play-btn" style="width:auto; margin:0 10px; padding:5px 20px;" onclick="stopRadio()">إيقاف</button>
     </div>
 
     <footer>
-        <p>صدقة جارية لـ الحجة عزة عبد المجيد عمر (رحمها الله)</p>
-        <p style="color: var(--gold-color); margin-top: 10px;">Saif Hassan © 2025</p>
+        <p>صدقة جارية لـ أمي الحجة عزة عبد المجيد عمر (رحمها الله)</p>
+        <p style="color: var(--gold-color); margin-top: 10px;">جميع الحقوق محفوظه لدي Saif Hassan © 2025 </p>
     </footer>
 
     <audio id="audioPlayer"></audio>
